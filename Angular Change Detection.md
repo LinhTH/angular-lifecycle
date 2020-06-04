@@ -2,8 +2,9 @@
 
 ## What does it do
 There are two main building blocks of change detection in Angular:
-	* a component view
-	* the associated bindings.
+	
+  * a component view
+  * the associated bindings.
 
 Every component in Angular has  a template with HTML elements. Angular refers to the template to render the contents (real DOM nodes) on the screen -> it needs a place to store the references to those DOM nodes. 
 For that purpose, internally there’s a data structure known as [VIEW](https://github.com/angular/angular/blob/master/packages/core/src/view/types.ts), which is used to store the [reference](https://github.com/angular/angular/blob/master/packages/core/src/view/types.ts#L373) to the component instance and the previous values of binding expressions.  The relationship between VIEW and Component is 1-1. 
