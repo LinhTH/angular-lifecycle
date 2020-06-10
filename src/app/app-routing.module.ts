@@ -6,18 +6,15 @@ const routes: Routes = [
   {
     path: 'lifecycle',
     loadChildren: () =>
-      import('./life-cycle/lifecycle.module').then((m) => m.LifecycleModule),
+      import('./lifecycle/lifecycle.module').then((m) => m.LifecycleModule),
   },
-  //   {
-  //     path: 'login',
-  //     loadChildren: () =>
-  //       import('./pages/login/login.module').then((m) => m.LoginModule),
-  //   },
-  //   {
-  //     path: 'signup',
-  //     loadChildren: () =>
-  //       import('./pages/signup/signup.module').then((m) => m.SignupModule),
-  //   },
+  {
+    path: 'spy-directive',
+    loadChildren: () =>
+      import('./spy-directive/spy-directive.module').then(
+        (m) => m.SpyDirectiveModule
+      ),
+  },
 ];
 
 @NgModule({
