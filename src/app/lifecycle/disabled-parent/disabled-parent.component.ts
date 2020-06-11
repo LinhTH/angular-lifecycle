@@ -9,6 +9,7 @@ import {
   AfterViewChecked,
   OnDestroy,
   ChangeDetectorRef,
+  Input,
 } from '@angular/core';
 import { LoggerService } from '../../helper/logger.service';
 
@@ -34,6 +35,8 @@ export class DisabledParentComponent
   heroName = 'Windstorm';
 
   componentName = 'Disblaed Parent';
+
+  @Input() testAttribute: string;
 
   constructor(private logger: LoggerService, private ref: ChangeDetectorRef) {
     this.logger = logger;
