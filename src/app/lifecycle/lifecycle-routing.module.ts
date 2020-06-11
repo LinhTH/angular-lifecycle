@@ -1,9 +1,8 @@
+import { LifeCyclePageComponent } from './lifecycle-page.component';
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { ParentComponent } from './parent/parent.component';
 
-
-const routes: Routes = [{ path: '', component: ParentComponent }];
+const routes: Routes = [{ path: '', component: LifeCyclePageComponent }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
