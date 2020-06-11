@@ -8,16 +8,17 @@ import {
   AfterViewInit,
   AfterViewChecked,
   OnDestroy,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { LoggerService } from '../../helper/logger.service';
 
 @Component({
-  selector: 'parent',
-  templateUrl: './parent.component.html',
+  selector: 'disabled-parent',
+  templateUrl: './disabled-parent.component.html',
   styles: ['.parent {background: moccasin}'],
   providers: [LoggerService],
 })
-export class ParentComponent
+export class DisabledParentComponent
   implements
     OnInit,
     OnChanges,
@@ -31,47 +32,50 @@ export class ParentComponent
   hookLog: string[];
 
   heroName = 'Windstorm';
-  private logger: LoggerService;
 
-  constructor(logger: LoggerService) {
+  componentName = 'Disblaed Parent';
+
+  constructor(private logger: LoggerService, private ref: ChangeDetectorRef) {
     this.logger = logger;
     this.hookLog = logger.logs;
+    this.logger.log(`${this.componentName}: detach at constructor`);
+    this.ref.detach();
   }
 
   ngOnInit() {
-    this.logger.log('Parent: ngOnInit');
+    this.logger.log(`${this.componentName}: ngOnInit`);
   }
 
   ngOnChanges() {
-    this.logger.log('Parent: ngOnChanges');
+    this.logger.log(`${this.componentName}: ngOnChanges`);
   }
 
   ngDoCheck() {
-    this.logger.log(`Parent: DoCheck`);
+    this.logger.log(`${this.componentName}: : DoCheck`);
   }
 
   ngAfterContentInit() {
-    this.logger.log(`Parent: AfterContentInit`);
+    this.logger.log(`${this.componentName}: : AfterContentInit`);
   }
 
   // Beware! Called frequently!
   // Called in every change detection cycle anywhere on the page
   ngAfterContentChecked() {
-    this.logger.log(`Parent: AfterContentChecked`);
+    this.logger.log(`${this.componentName}: : AfterContentChecked`);
   }
 
   ngAfterViewInit() {
-    this.logger.log(`Parent: AfterViewInit`);
+    this.logger.log(`${this.componentName}: : AfterViewInit`);
   }
 
   // Beware! Called frequently!
   // Called in every change detection cycle anywhere on the page
   ngAfterViewChecked() {
-    this.logger.log(`Parent: AfterViewChecked`);
+    this.logger.log(`${this.componentName}: : AfterViewChecked`);
   }
 
   ngOnDestroy() {
-    this.logger.log(`Parent: OnDestroy`);
+    this.logger.log(`${this.componentName}: : OnDestroy`);
   }
 
   toggleChild() {
@@ -88,6 +92,10 @@ export class ParentComponent
   updateHero() {
     this.heroName += '!';
     this.logger.tick();
+  }
+
+  showLog() {
+    this.ref.detectChanges();
   }
 }
 
